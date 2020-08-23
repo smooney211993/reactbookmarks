@@ -5,7 +5,8 @@ const Sigin = (props) => {
     const  {
         onRouteChange,
         route,
-        loadUser
+        loadUser,
+        loadBookMarks
     } = props;
     const [formState, setFormState] = useState({
         name: '',
@@ -25,14 +26,23 @@ const Sigin = (props) => {
         
         const user = await fetchDataBase.register(name, email, password)
         console.log(user)
-        if(!user){
-            return
+        if(user){
+            loadUser(user)
+            onRouteChange('home')
+            
         }
+        
+       }
+    const signInUser = async() =>{
+        const {email, password} = formState;
+        const {user, bookmarks} = await fetchDataBase.signIn(email, password);
+       if(user){
         loadUser(user)
-        debugger;
-      
-
+        onRouteChange('home')
+        loadBookMarks(bookmarks)
+       }
     }
+
 
     const renderRegisterForm = ()=>{
         if(route === 'register'){
@@ -64,7 +74,7 @@ const Sigin = (props) => {
                         <input type="text" className="form-input" id="website-name" onChange={handleFormStateChange('password')} value ={formState.password} />
                     </div>
                     {route === "signin" ?
-                    <> <button type="submit" >Sign in</button> <button type="button" onClick={(e)=>onRouteChange('register')} >Register</button></>
+                    <> <button type="button" onClick={signInUser} >Sign in</button> <button type="button" onClick={(e)=>onRouteChange('register')} >Register</button></>
                      : 
                       <button type="button" onClick={registerUser} >Register</button>}
                 
