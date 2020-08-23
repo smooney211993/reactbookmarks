@@ -26,11 +26,12 @@ const Sigin = (props) => {
         
         const user = await fetchDataBase.register(name, email, password)
         console.log(user)
-        if(user){
-            loadUser(user)
-            onRouteChange('home')
+        if(!user){
+           return
             
         }
+        loadUser(user)
+        onRouteChange('home')
         
        }
     const signInUser = async() =>{

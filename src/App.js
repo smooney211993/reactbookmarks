@@ -1,8 +1,10 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import ItemList from './Components/Itemlist/Itemlist';
 import Modal from './Components/Modal/Modal'
 import Signin from './Components/Siginin/Siginin';
 import './App.css';
+
+
 
 const App = () =>{
   let [bookmarks, setBookmarks] = useState([]);
@@ -13,6 +15,7 @@ const App = () =>{
   email: '',
   entries: '',
   joined: ''})
+
   const [isSignin, setSignedIn] = useState(false)
   const [displayModal, setDisplayModal] = useState(false)
   const loadBookMarks = (data) =>{
@@ -27,7 +30,8 @@ const App = () =>{
       return <Modal 
        hideModal={()=>setDisplayModal(false)}
        addBookmark={addBookmark}
-       userId={user.id}/>
+       userId={user.id}
+       />
     }
   }
   const onRouteChange = (routeAdress) =>{

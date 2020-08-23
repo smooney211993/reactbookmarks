@@ -41,6 +41,30 @@ const fetchDataBase = {
         } catch(error) {
             console.log(error)
         }
+    },
+
+    async addBookMark(name, url, id){
+        try {
+            const response = await fetch('http://localhost:3001/bookmarks', {
+            method: 'post',
+            headers : {'Content-type': 'application/json'},
+            body: JSON.stringify({
+                name: name,
+                url : url,
+                id: id
+            })
+        })
+        if(response.ok){
+            const addedBookmark = await response.json()
+            return addedBookmark;
+        } else {
+            throw new Error('Could not add bookmark')
+        }
+
+        } catch (error) {
+            console.log(error)
+            
+        }
     }
 }
 
