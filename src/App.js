@@ -25,6 +25,10 @@ const App = () =>{
     setBookmarks([...bookmarks, newBookMarks])
     setDisplayModal(false)
     }
+  const deleteBookMarks =(bookmark) =>{
+    setBookmarks(bookmarks.filter(item=>item.bookmarks_id !== bookmark.bookmarks_id ))
+  }
+
   const renderModal = () =>{
     if(displayModal){
       return <Modal 
@@ -60,7 +64,7 @@ const App = () =>{
     ?
     <>
       <h1 id="show-modal" onClick ={()=>setDisplayModal(true)} >Add Bookmark</h1>
-      <ItemList bookmarks={bookmarks}/>
+      <ItemList bookmarks={bookmarks} onRemove={deleteBookMarks}/>
       {renderModal()}
     </>
      :

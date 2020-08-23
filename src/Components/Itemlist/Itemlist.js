@@ -2,11 +2,12 @@ import React from 'react';
 import Item from '../Item/Item';
 const ItemList = (props) => {
     const {
-        bookmarks
+        bookmarks,
+        onRemove
     } = props;
     const renderItemList = () => {
         return bookmarks.map((bookmark, i)=>{
-            return <Item bookmark={bookmark} key={i}/>
+            return <Item bookmark={bookmark} key={i} onRemove={onRemove}/>
         })
     }
     

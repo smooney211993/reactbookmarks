@@ -23,25 +23,32 @@ const Sigin = (props) => {
 
     const registerUser = async () => {
         const {name, email, password} = formState;
-        
-        const user = await fetchDataBase.register(name, email, password)
-        console.log(user)
-        if(!user){
-           return
+        try {
+            const user = await fetchDataBase.register(name, email, password)
+            if(user){
+                loadUser(user)
+                onRouteChange('home')
+                
+            }
             
+            
+        } catch (error) {
+            console.log(error)
         }
-        loadUser(user)
-        onRouteChange('home')
-        
+       
        }
     const signInUser = async() =>{
         const {email, password} = formState;
-        const {user, bookmarks} = await fetchDataBase.signIn(email, password);
-       if(user){
-        loadUser(user)
-        onRouteChange('home')
-        loadBookMarks(bookmarks)
-       }
+        try {
+            const {user, bookmarks} = await fetchDataBase.signIn(email, password);
+            if(user){
+             loadUser(user)
+             onRouteChange('home')
+             loadBookMarks(bookmarks)
+            } 
+        } catch (error) {
+            console.log(error)
+        }
     }
 
 
@@ -66,18 +73,24 @@ const Sigin = (props) => {
             </div>
             <div className="modal-content">
                     {renderRegisterForm()}
+                    <br/>
                     <div className="form-group">
                         <label htmlFor="website-url" className="form-label">Email </label>
                         <input type="text" className="form-input" id="website-url" onChange={handleFormStateChange('email')} value={formState.email}/>
+                        
                     </div>
+                    <br/>
                     <div className="form-group">
                         <label htmlFor="website-name" className="form-label"> Password</label>
                         <input type="text" className="form-input" id="website-name" onChange={handleFormStateChange('password')} value ={formState.password} />
                     </div>
                     {route === "signin" ?
-                    <> <button type="button" onClick={signInUser} >Sign in</button> <button type="button" onClick={(e)=>onRouteChange('register')} >Register</button></>
+                    <> <button type="button" onClick={signInUser}  >Sign in</button> <button type="button" onClick={(e)=>onRouteChange('register')} className="register-button" >Register</button></>
                      : 
-                      <button type="button" onClick={registerUser} >Register</button>}
+                     <>
+                      <button type="button" onClick={registerUser} >Register</button>
+                      <button type="button" className="signin-button" onClick={(e)=>onRouteChange('signin')} >Sign in</button>
+                     </>} 
                 
             </div>
         </div>

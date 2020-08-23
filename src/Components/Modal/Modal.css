@@ -84,6 +84,7 @@
     border:none;
     border-radius: var(--border-radius);
     margin-top: 10px;
+    
   
   }
   
@@ -93,4 +94,12 @@
   
   button:focus {
     outline:none;
+  }
+
+  .signin-button {
+    float: right;
+  }
+
+  .register-button {
+    float: right;
   }
