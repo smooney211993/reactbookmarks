@@ -65,6 +65,23 @@ const fetchDataBase = {
             console.log(error)
             
         }
+    },
+    async deleteBookMark(id){
+        try{
+            const response = await fetch(`http://localhost:3001/bookmarks/${id}`,{
+                method : 'delete',
+                headers: {'Content-type': 'application/json'}
+            })
+            if(response.ok){
+                const jsonResponse = await response.json();
+                return jsonResponse
+            } else {
+                throw new Error('could not delete bookmark')
+            }
+        } catch (error){
+            console.log(error)
+            
+        }
     }
 }
 

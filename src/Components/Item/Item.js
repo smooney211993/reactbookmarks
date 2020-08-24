@@ -1,10 +1,16 @@
 import React from 'react';
+import FetchDataBase from '../../Utils/database';
+import fetchDataBase from '../../Utils/database';
 
 const Item = (props) => {
-    const { bookmark,bookmark: {bookmarks_name,bookmarks_url}, onRemove
+    const { bookmark,bookmark: {bookmarks_id,bookmarks_name,bookmarks_url}, onRemove
     } = props;
-    const deleteBookmarks =() =>{
-        onRemove(bookmark)
+    const deleteBookmarks = async() =>{
+        const deleteResponse = await fetchDataBase.deleteBookMark(bookmarks_id)
+        if(deleteResponse === 'succesfully deleted'){
+            onRemove(bookmark)
+        }
+        
     }
     console.log(props)
      return(
