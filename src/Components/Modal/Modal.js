@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import fetchDataBase from '../../Utils/database';
 import './Modal.css'
+import validate from '../../Helpers/validateform';
 
 const Modal = (props) => {
     const {
@@ -12,6 +13,7 @@ const Modal = (props) => {
         name: '',
         url: ''
     });
+    const [validUrl, setValidUrl] = useState(true)
     const handleFormStateChange = (key) => (event) => {
         setFormState({
             ...formState,
@@ -21,13 +23,30 @@ const Modal = (props) => {
 
 
       const addBookmarkOnSubmit = async (e) =>{
-          e.preventDefault()
+       
+        e.preventDefault()
             const {name, url} = formState;
-          const newBookMark = await fetchDataBase.addBookMark(name, url, userId)
-
-          addBookmark(newBookMark);
-      }
-
+            let websiteUrl = ''
+            if(!url.includes('http://', 'https://')){
+                websiteUrl = `https://${url}`
+            } 
+            const isValidName = validate.validateName(name)
+            const isValidUrl = validate.validateUrl(websiteUrl)
+            if(isValidName && isValidUrl) {
+                const newBookMark = await fetchDataBase.addBookMark(name, websiteUrl, userId)
+                addBookmark(newBookMark);
+                setValidUrl(true)
+            } else {
+                setValidUrl(false)
+            }
+              
+      } 
+    const renderError = () =>{
+        if(validUrl){
+            return
+        }
+        return  <div className="error-message">Please use a valid url</div>
+    }
     return (
     <div className="modal-container " id="modal">
         <div className="modal">
@@ -45,6 +64,7 @@ const Modal = (props) => {
                         <label htmlFor="website-url" className="form-label"> Website Url</label>
                         <input type="text" className="form-input" id="website-url" onChange={handleFormStateChange('url')} value={formState.websiteUrl}/>
                     </div>
+                    {renderError()}
                     <button type="submit"  >Save</button>
                 </form>
             </div>

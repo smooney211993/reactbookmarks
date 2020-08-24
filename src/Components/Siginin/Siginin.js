@@ -67,7 +67,6 @@ const Sigin = (props) => {
     return (
     <div className="modal-container " id="modal">
         <div className="modal">
-            <i className="fas fa-times close-icon" ></i>
             <div className="modal-header">
                 <h3>{route === "register" ? "Register" : "Sign In"}</h3>
             </div>

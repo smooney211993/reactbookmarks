@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react';
 import ItemList from './Components/Itemlist/Itemlist';
 import Modal from './Components/Modal/Modal'
 import Signin from './Components/Siginin/Siginin';
+import Navbar from './Components/Navbar/Navbar';
 import './App.css';
 
 
@@ -13,10 +14,9 @@ const App = () =>{
   id: '',
   name: '',
   email: '',
-  entries: '',
   joined: ''})
 
-  const [isSignin, setSignedIn] = useState(false)
+  const [isSignedin, setSignedIn] = useState(false)
   const [displayModal, setDisplayModal] = useState(false)
   const loadBookMarks = (data) =>{
     setBookmarks(data)
@@ -42,6 +42,11 @@ const App = () =>{
     setRoute(routeAdress)
     if(routeAdress === 'signout'){
       setSignedIn(false)
+      setUser({
+        id: '',
+        name: '',
+        email: '',
+        joined: ''})
     
 
     } else if (routeAdress === 'home') {
@@ -63,6 +68,7 @@ const App = () =>{
     return route === 'home'
     ?
     <>
+      <Navbar onRouteChange={onRouteChange}/>
       <h1 id="show-modal" onClick ={()=>setDisplayModal(true)} >Add Bookmark</h1>
       <ItemList bookmarks={bookmarks} onRemove={deleteBookMarks}/>
       {renderModal()}

@@ -12,7 +12,6 @@ const Item = (props) => {
         }
         
     }
-    console.log(props)
      return(
             <div className="item">
                 <i className="fas fa-times" id="delete-bookmark" title="delete bookmark" onClick={deleteBookmarks}></i>
