@@ -30,6 +30,7 @@ const Modal = (props) => {
             if(!url.includes('http://', 'https://')){
                 websiteUrl = `https://${url}`
             } 
+           try {
             const isValidName = validate.validateName(name)
             const isValidUrl = validate.validateUrl(websiteUrl)
             if(isValidName && isValidUrl) {
@@ -39,6 +40,10 @@ const Modal = (props) => {
             } else {
                 setValidUrl(false)
             }
+           } catch (error) {
+               console.log(error)
+               
+           }
               
       } 
     const renderError = () =>{

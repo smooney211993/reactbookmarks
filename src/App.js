@@ -3,6 +3,7 @@ import ItemList from './Components/Itemlist/Itemlist';
 import Modal from './Components/Modal/Modal'
 import Signin from './Components/Siginin/Siginin';
 import Navbar from './Components/Navbar/Navbar';
+import Loader from './Components/Loader/Loader';
 import './App.css';
 
 
@@ -18,6 +19,7 @@ const App = () =>{
 
   const [isSignedin, setSignedIn] = useState(false)
   const [displayModal, setDisplayModal] = useState(false)
+  const [loading, setLoading] = useState(false);
   const loadBookMarks = (data) =>{
     setBookmarks(data)
   }
@@ -64,17 +66,36 @@ const App = () =>{
     })
   }
 
+  const renderLoader = () =>{
+    if(!loading) {
+      return
+    }
+    return <Loader/>
+  }
+
+  const setLoader = (bolean) => {
+    setLoading(bolean)
+  }
   const homepage = () =>{
     return route === 'home'
     ?
     <>
       <Navbar onRouteChange={onRouteChange}/>
       <h1 id="show-modal" onClick ={()=>setDisplayModal(true)} >Add Bookmark</h1>
-      <ItemList bookmarks={bookmarks} onRemove={deleteBookMarks}/>
+      <ItemList 
+      bookmarks={bookmarks} 
+      onRemove={deleteBookMarks}/>
       {renderModal()}
     </>
      :
-     <Signin onRouteChange={onRouteChange} route={route} loadUser={loadUser} loadBookMarks={loadBookMarks}/>
+     <Signin 
+     onRouteChange={onRouteChange} 
+     route={route} 
+     loadUser={loadUser} 
+     loadBookMarks={loadBookMarks} 
+     setLoader={setLoader}/>
+    
+
       
 
     
@@ -83,6 +104,7 @@ const App = () =>{
   return (
     <>
     {homepage()}
+    {renderLoader()}
     </>
   )
 }

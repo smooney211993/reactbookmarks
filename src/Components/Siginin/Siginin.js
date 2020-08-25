@@ -6,7 +6,8 @@ const Sigin = (props) => {
         onRouteChange,
         route,
         loadUser,
-        loadBookMarks
+        loadBookMarks,
+        setLoader
     } = props;
     const [formState, setFormState] = useState({
         name: '',
@@ -40,6 +41,7 @@ const Sigin = (props) => {
     const signInUser = async() =>{
         const {email, password} = formState;
         try {
+            setLoader(true)
             const {user, bookmarks} = await fetchDataBase.signIn(email, password);
             if(user){
              loadUser(user)
@@ -48,6 +50,8 @@ const Sigin = (props) => {
             } 
         } catch (error) {
             console.log(error)
+        } finally {
+            setLoader(false)
         }
     }
 

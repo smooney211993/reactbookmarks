@@ -6,7 +6,7 @@ const Navbar =(props) => {
     
         return (
             <nav className="nav">
-                <p className='nav-link' onClick={()=>onRouteChange('signout')}>Sign Out </p>
+                <p className='nav-link' onClick={()=>onRouteChange('signin')}>Sign Out </p>
             </nav>
         ) 
      
