@@ -30,7 +30,19 @@ const App = () =>{
   const deleteBookMarks =(bookmark) =>{
     setBookmarks(bookmarks.filter(item=>item.bookmarks_id !== bookmark.bookmarks_id ))
   }
-
+  const updateBookmarks = (id, updatedName, updatedUrl) =>{
+    const updated = bookmarks.map((item)=>{
+      if(item.bookmarks_id === id ){
+        return {...item,
+        bookmarks_name: updatedName,
+        bookmarks_url: updatedUrl}
+      }
+      return item
+    })
+    
+    setBookmarks([...updated])
+    debugger;
+  }
   const renderModal = () =>{
     if(displayModal){
       return <Modal 
@@ -86,6 +98,7 @@ const App = () =>{
       <ItemList 
       bookmarks={bookmarks} 
       onRemove={deleteBookMarks}
+      onUpdate={updateBookmarks}
       setLoader={setLoader}
       />
       {renderModal()}

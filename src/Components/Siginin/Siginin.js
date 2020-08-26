@@ -2,6 +2,7 @@ import React , {useState} from 'react';
 import fetchDataBase from '../../Utils/database';
 import validateEmail from '../../Helpers/emailvalidation';
 import validateName from '../../Helpers/namevalidation';
+import validatePassword from '../../Helpers/passwordvalidation';
 
 const Sigin = (props) => {
     const  {
@@ -22,31 +23,27 @@ const Sigin = (props) => {
         password: true
 
     })
-
     const handleFormStateChange = (key) => (event) => {
         setFormState({
             ...formState,
             [key] : event.target.value
         })
     }
-    
-    
-
     const registerUser = async () => {
         const {name, email, password} = formState;
         const isValidName = validateName(name)
         const isValidEmail = validateEmail(email);
+        const isValidPassword = validatePassword(password)
         setIsValidFormState({
             name: isValidName,
             email: isValidEmail,
-            password: true
+            password: isValidPassword
             
         })
-        if(!isValidName || !isValidEmail){
+        if(!isValidName || !isValidEmail|| !isValidPassword){
             return
         }
-        try {
-            
+        try { 
             const user = await fetchDataBase.register(name, email, password)
             if(user){
                 setLoader(true)
@@ -87,7 +84,8 @@ const Sigin = (props) => {
             return (
                 <div className="form-group">
                         <label htmlFor="website-name" className="form-label"> First Name</label>
-                        <input type="text" className="form-input" id="website-name" onChange={handleFormStateChange('name')} value ={formState.name} />  
+                        <input type="text" className="form-input" id="website-name" onChange={handleFormStateChange('name')} value ={formState.name} /> 
+                        {!validFormState.name ? "Please enter your name" : <></>} 
                 </div>
             )
         }
@@ -112,7 +110,10 @@ const Sigin = (props) => {
                     <div className="form-group">
                         <label htmlFor="website-name" className="form-label"> Password</label>
                         <input type="text" className="form-input" id="website-name" onChange={handleFormStateChange('password')} value ={formState.password} />
+                        
                     </div>
+                    {!validFormState.password ? <>"Password must contain minimum eight characters, at least one uppercase letter, one lowercase letter and one number"</> : <></>}
+                    <br/>
                     {route === "signin"  ?
                     <> <button type="button" onClick={signInUser}  >Sign in</button> <button type="button" onClick={(e)=>onRouteChange('register')} className="register-button" >Register</button></>
                      : 

@@ -4,11 +4,17 @@ const ItemList = (props) => {
     const {
         bookmarks,
         onRemove,
+        onUpdate,
         setLoader
     } = props;
     const renderItemList = () => {
         return bookmarks.map((bookmark, i)=>{
-            return <Item bookmark={bookmark} key={i} onRemove={onRemove} setLoader={setLoader}/>
+            return <Item 
+            bookmark={bookmark}
+            key={i} 
+            onRemove={onRemove}
+            onUpdate={onUpdate} 
+            setLoader={setLoader}/>
         })
     }
     
