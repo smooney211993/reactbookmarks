@@ -2,14 +2,14 @@ import React from 'react';
 import  './Navbar.css'
 
 const Navbar =(props) => {
-    const {onRouteChange} = props;
-    
+    const {onRouteChange, isSignedin} = props;
+    if(isSignedin) 
         return (
-            <nav className="nav">
-                <p className='nav-link' onClick={()=>onRouteChange('signin')}>Sign Out </p>
+            <nav className="nav nav.link">
+                <p onClick={()=>onRouteChange('signin')}>SignOut</p>
             </nav>
         ) 
-     
+        return (<div>Bookmark Keeper!</div>)
 }
 
 export default Navbar;

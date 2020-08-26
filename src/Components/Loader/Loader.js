@@ -4,7 +4,7 @@ import './Loader.css'
 const Loader = (props) =>{
     return (
        <div className="loader">
-            <div class="lds-ripple">
+            <div className="lds-ripple">
                 <div>
                     </div><div>
                 </div>

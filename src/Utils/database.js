@@ -1,7 +1,7 @@
 const fetchDataBase = {
     async register (name, email, password) {
         try{
-            const response = await fetch(`http://localhost:3001/register`,{
+            const response = await fetch(`https://bookmarksbackend.herokuapp.com/register`,{
                 method: 'post',
                 headers: {'Content-type' : 'application/json'},
                 body: JSON.stringify({
@@ -23,7 +23,7 @@ const fetchDataBase = {
     },
     async signIn(email, password){
         try{
-            const response = await fetch('http://localhost:3001/signin',{
+            const response = await fetch('https://bookmarksbackend.herokuapp.com/signin',{
                 method: 'post',
                 headers: {'Content-type' : 'application/json'},
                 body: JSON.stringify({
@@ -45,7 +45,7 @@ const fetchDataBase = {
 
     async addBookMark(name, url, id){
         try {
-            const response = await fetch('http://localhost:3001/bookmarks', {
+            const response = await fetch('https://bookmarksbackend.herokuapp.com/bookmarks', {
             method: 'post',
             headers : {'Content-type': 'application/json'},
             body: JSON.stringify({
@@ -68,7 +68,7 @@ const fetchDataBase = {
     },
     async deleteBookMark(id){
         try{
-            const response = await fetch(`http://localhost:3001/bookmarks/${id}`,{
+            const response = await fetch(`https://bookmarksbackend.herokuapp.com/bookmarks/${id}`,{
                 method : 'delete',
                 headers: {'Content-type': 'application/json'}
             })

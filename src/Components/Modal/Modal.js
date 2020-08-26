@@ -7,7 +7,8 @@ const Modal = (props) => {
     const {
         hideModal,
         addBookmark,
-        userId
+        userId,
+        setLoader
     } = props
     const [formState, setFormState] = useState({
         name: '',
@@ -23,26 +24,28 @@ const Modal = (props) => {
 
 
       const addBookmarkOnSubmit = async (e) =>{
-       
-        e.preventDefault()
+            e.preventDefault()
             const {name, url} = formState;
-            let websiteUrl = ''
+            let websiteUrl = '';
             if(!url.includes('http://', 'https://')){
                 websiteUrl = `https://${url}`
-            } 
+            } ;
            try {
-            const isValidName = validate.validateName(name)
-            const isValidUrl = validate.validateUrl(websiteUrl)
+            setLoader(true);
+            const isValidName = validate.validateName(name);
+            const isValidUrl = validate.validateUrl(websiteUrl);
             if(isValidName && isValidUrl) {
                 const newBookMark = await fetchDataBase.addBookMark(name, websiteUrl, userId)
                 addBookmark(newBookMark);
-                setValidUrl(true)
+                setValidUrl(true);
             } else {
-                setValidUrl(false)
+                setValidUrl(false);
             }
            } catch (error) {
-               console.log(error)
+               console.log(error);
                
+           } finally {
+               setLoader(false);
            }
               
       } 
