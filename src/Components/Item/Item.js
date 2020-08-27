@@ -101,7 +101,7 @@ const Item = (props) => {
         )
         : (
             <div className="item">
-                <div onClick={()=>setIsEdit(true)}>Edit</div>
+                <div className="edit" onClick={()=>setIsEdit(true)}>Edit</div>
                 <i className="fas fa-times" id="delete-bookmark" title="delete bookmark" onClick={deleteBookmarks}></i>
                 <div className="name">
                     <img src = {`https://s2.googleusercontent.com/s2/favicons?domain=${bookmarks_url}`} alt="favicon"/>

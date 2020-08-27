@@ -109,7 +109,7 @@ const Sigin = (props) => {
                     <br/>
                     <div className="form-group">
                         <label htmlFor="website-name" className="form-label"> Password</label>
-                        <input type="text" className="form-input" id="website-name" onChange={handleFormStateChange('password')} value ={formState.password} />
+                        <input type="password" className="form-input" id="website-name" onChange={handleFormStateChange('password')} value ={formState.password} />
                         
                     </div>
                     {!validFormState.password ? <>"Password must contain minimum eight characters, at least one uppercase letter, one lowercase letter and one number"</> : <></>}
