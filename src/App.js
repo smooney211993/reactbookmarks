@@ -41,7 +41,6 @@ const App = () =>{
     })
     
     setBookmarks([...updated])
-    debugger;
   }
   const renderModal = () =>{
     if(displayModal){
