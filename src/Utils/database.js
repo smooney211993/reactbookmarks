@@ -82,6 +82,28 @@ const fetchDataBase = {
             console.log(error)
             
         }
+    },
+
+    async updateBookmarks(id, name, url){
+        try{
+            const response = await fetch(`https://bookmarksbackend.herokuapp.com/bookmarks/${id}`,{
+                method: 'put',
+                headers: {'Content-type' : 'application/json'},
+                body: JSON.stringify({
+                    name: name,
+                    url: url
+                })
+
+            })
+            if(response.ok){
+                const jsonResponse = await response.json();
+                return jsonResponse
+            } else {
+                throw new Error('Could not update bookmarks')
+            }
+        } catch (error){
+            console.log(error)
+        }
     }
 }
 
