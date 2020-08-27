@@ -93,11 +93,33 @@ a:active {
   margin-top: 20px;
   margin-right: 20px;
 }
+.edit-form label {
+  font-size: 0.9rem;
+  display: block;
+  margin-left: 5x;
 
+}
+.edit-form input{
+  width: 95;
+  margin-left: 5px;
+}
 .edit-form button {
   margin: 5px;
+  display: block;
 }
 
+.edit-save {
+  float: left;
+  width: 90px;
+  height: 25px;
+  
+}
+
+.edit-cancel {
+  float: right;
+  width: 90px;
+  height: 25px;
+}
 /* media query: large smart phone */
 
 @media screen and (max-width: 600px){

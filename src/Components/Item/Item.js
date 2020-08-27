@@ -93,8 +93,9 @@ const Item = (props) => {
                 <label htmlFor={"website-url"}>Url</label>
                 <input type ="text" onChange={handleFormStateChange('url')} value={formState.url}></input>
                 {!validFormState.url ? "Please use a valid Url" : <></>}
-                <button type="submit">Save</button>
-                <button type ="button" onClick={()=>setIsEdit(false)}>Cancel</button>
+                <br/>
+                <button className="edit-save" type="submit">Save</button>
+                <button className="edit-cancel" type ="button" onClick={()=>setIsEdit(false)}>Cancel</button>
                </form> 
             </div>
         </div>
