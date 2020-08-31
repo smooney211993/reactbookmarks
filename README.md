@@ -1,4 +1,16 @@
-This project is an application that allows registered users to save their bookmarks. It displays their bookmarks in a card, showing website name and website favicon also allowing them to click to be taken to their saved website.
+This project is an application that allows registered users to save their bookmarks. It displays their bookmarks in a card, showing website name and website favicon also allowing them to click to be taken to their saved website. The idea was presented to me through a udemy course, however the udemy course used localstorage ,had no user sign up and was built using vanilla javascript. React solved alot of problems with state management and dom manipulation as alot of what was being displayed was dependant on data that was being fetched from the database and user signin.
+
+This application allows for new registration of users which their input values will be validated and stored on the backend api. Passwords are hashed using bcrypt in which the api will store and compare password entries to allow user protection. The application content is dependant on its state of signin.
+
+Users are able to save their bookmarks in addition to deleting and updating. All requests require a http post to the API and if successful the application will re render its state reflecting the modified database(but not actually retrieving the whole database) to allow the display of updated bookmarks.
+
+Compared to my first project(FACEREC), bookmarks is alot simpler and does not use an foreign api(API in bookmarks was self created). The code is alot cleaner as it does not contain redefined functions. This was achieved through currying functions(functions used for the onchange event), allowing re-useablity without redefining and building a signout component that could also be used as register component.
+
+//Improvements//
+Create the ability for users to delete and update their account?
+Evolve it from a single user experience to a social media type application where multiple users can see other users bookmarks? - Probably will need state management in order to achieve this?
+My css styling skills need to be improved on as the application looks like something straight out of 1997 - Maybe use material UI?
+The backend of this project does not have anything to protect its routes - JSON webtoken could be implemented?
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
