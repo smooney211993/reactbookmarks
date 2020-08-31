@@ -11,27 +11,32 @@ const Sigin = (props) => {
     email: '',
     password: '',
   });
+  //input values
   const [validFormState, setIsValidFormState] = useState({
     name: true,
     email: true,
     password: true,
   });
+  // error state
   const handleFormStateChange = (key) => (event) => {
     setFormState({
       ...formState,
       [key]: event.target.value,
     });
   };
+  // onchange function
   const registerUser = async () => {
     const { name, email, password } = formState;
     const isValidName = validateName(name);
     const isValidEmail = validateEmail(email);
     const isValidPassword = validatePassword(password);
+    // checks that the inputs are valid
     setIsValidFormState({
       name: isValidName,
       email: isValidEmail,
       password: isValidPassword,
     });
+    // if there are errors, the values will be false in which will render the error message that is dependant on it
     if (!isValidName || !isValidEmail || !isValidPassword) {
       return;
     }
@@ -49,6 +54,8 @@ const Sigin = (props) => {
     } finally {
       setLoader(false);
     }
+    // if all input values are valid, the register function will post the details to the database which will
+    // return the new registered user. Loader will always be set to true in the start of the try block and will always be set to false in the finally. this will show the loading bar regardless of success or fail
   };
   const signInUser = async () => {
     const { email, password } = formState;
@@ -67,6 +74,7 @@ const Sigin = (props) => {
     } finally {
       setLoader(false);
     }
+    // same functionality as the register but the fetch will recieve a pre-existing user
   };
 
   const renderRegisterForm = () => {
@@ -88,6 +96,7 @@ const Sigin = (props) => {
         </div>
       );
     }
+    // if user clicks on the register form, the route state changes and the render form will appear
   };
 
   return (

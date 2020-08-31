@@ -10,6 +10,7 @@ const Navbar = (props) => {
       </nav>
     );
   return <div>Bookmark Keeper!</div>;
+  // changes the state route of the app on the onclick event
 };
 
 export default Navbar;

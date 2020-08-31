@@ -45,6 +45,8 @@ const Modal = (props) => {
       setLoader(false);
     }
     // if both name and value are validated, the addbookmark http post request will be made to the database which will then return the new bookmark of which will be added to the bookmark state in app
+    // loader will always be set to true in the start of the try block and will always be set to false in the finally. This will ensure that the loading spin will be displayed when the application is fetching
+    // regardless of success or fail.
   };
   const renderError = () => {
     if (validUrl) {

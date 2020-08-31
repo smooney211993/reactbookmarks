@@ -6,5 +6,6 @@ const validatePassword = (password) => {
   }
   return true;
 };
+// validates a that the user password has fulfilled password requirements
 
 export default validatePassword;

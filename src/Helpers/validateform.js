@@ -8,7 +8,7 @@ const validate = {
       return true;
     }
   },
-
+  // validates website input
   validateName(nameValue) {
     if (nameValue < 2) {
       return false;
