@@ -25,10 +25,12 @@ const App = () => {
   const addBookmark = (newBookMarks) => {
     setBookmarks([...bookmarks, newBookMarks]);
     setDisplayModal(false);
+    //add bookmarks to new state
   };
   const deleteBookMarks = (bookmark) => {
     setBookmarks(
       bookmarks.filter((item) => item.bookmarks_id !== bookmark.bookmarks_id)
+      // filters the bookmarks that have not been selected
     );
   };
   const updateBookmarks = (id, updatedName, updatedUrl) => {
@@ -44,6 +46,7 @@ const App = () => {
     });
 
     setBookmarks([...updated]);
+    // updates bookmarks with the value inputs from the form
   };
   const renderModal = () => {
     if (displayModal) {
@@ -71,6 +74,7 @@ const App = () => {
     } else if (routeAdress === 'home') {
       setSignedIn(true);
     }
+    // changes the route of the app depending on state route
   };
 
   const loadUser = (data) => {
@@ -80,6 +84,7 @@ const App = () => {
       email: data.email,
       joined: data.joined,
     });
+    // load user function used when fetching data from the database
   };
 
   const renderLoader = () => {
@@ -87,10 +92,12 @@ const App = () => {
       return;
     }
     return <Loader />;
+    // renders loading bar
   };
 
   const setLoader = (bolean) => {
     setLoading(bolean);
+    // sets loading state which the renderloader function is dependant on
   };
   const homepage = () => {
     return route === 'home' ? (

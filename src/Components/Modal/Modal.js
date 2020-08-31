@@ -23,7 +23,7 @@ const Modal = (props) => {
     let websiteUrl = '';
     if (!url.includes('http://', 'https://')) {
       websiteUrl = `https://${url}`;
-    }
+    } // adds the prefix https on value input
     try {
       setLoader(true);
       const isValidName = validate.validateName(name);
@@ -44,6 +44,7 @@ const Modal = (props) => {
     } finally {
       setLoader(false);
     }
+    // if both name and value are validated, the addbookmark http post request will be made to the database which will then return the new bookmark of which will be added to the bookmark state in app
   };
   const renderError = () => {
     if (validUrl) {
