@@ -1,3 +1,5 @@
+This project is an application that allows registered users to save their bookmarks. It displays their bookmarks in a card, showing website name and website favicon also allowing them to click to be taken to their saved website.
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts

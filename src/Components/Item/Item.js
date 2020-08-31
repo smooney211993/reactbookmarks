@@ -37,6 +37,7 @@ const Item = (props) => {
     } finally {
       setLoader(false);
     }
+    // if the bookmark has been sucessfully deleted from the database, delete the bookmark from the bookmarks state which will re render the displayed bookmarks
   };
   const updateBookmarks = async (e) => {
     e.preventDefault();
@@ -75,6 +76,7 @@ const Item = (props) => {
     }
 
     setIsEdit(false);
+    // if the bookmark has been sucessfully updated in the database, delete the bookmark from the bookmarks state which will re render the displayed bookmarks
   };
   return isEdit ? (
     <div className='item'>
